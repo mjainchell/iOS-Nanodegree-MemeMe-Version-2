@@ -126,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCn-Ys-Afi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2734" y="-403"/>
+            <point key="canvasLocation" x="2713" y="-446"/>
         </scene>
         <!--Meme-->
         <scene sceneID="tne-QT-ifu">
@@ -223,11 +223,12 @@
                         <outlet property="memeImageView" destination="0Xz-au-Ls0" id="0bU-TV-S7q"/>
                         <outlet property="memeTopText" destination="Gkh-AE-8cs" id="VBV-AE-tSC"/>
                         <outlet property="toolbarMenu" destination="e8l-PC-fqZ" id="8kC-8z-VIx"/>
+                        <segue destination="G1w-Si-sHz" kind="show" identifier="ShowTheMemeList" id="Y7n-mK-XIM"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2734.7826086956525" y="433.69565217391306"/>
+            <point key="canvasLocation" x="2712" y="483"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NpJ-5u-Ma8">
@@ -263,7 +264,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xB4-Nb-1pN" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="-402"/>
+            <point key="canvasLocation" x="1799" y="-742"/>
         </scene>
         <!--CreateEditMemeNavigationController-->
         <scene sceneID="FNR-jA-uw9">
@@ -281,7 +282,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxb-r3-EI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="435"/>
+            <point key="canvasLocation" x="1799" y="832"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>

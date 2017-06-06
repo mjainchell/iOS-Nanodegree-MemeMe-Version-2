@@ -37,6 +37,8 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     
     var meme: Meme?
     
+    var receivedIndexOfExistingMeme: Int?
+    
     // MARK: FUNCTIONS
     
     // MARK: Text field configuration functions
@@ -165,23 +167,23 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     }
 */
     
- func generateMemedImage() -> UIImage {
+    func generateMemedImage() -> UIImage {
  
- self.navigationController?.setNavigationBarHidden(true, animated: false)
- self.navigationController?.setToolbarHidden(true, animated: false)
- toolbarMenu.isHidden = true
+        self.navigationController?.setNavigationBarHidden(true, animated: false)
+        self.navigationController?.setToolbarHidden(true, animated: false)
+        toolbarMenu.isHidden = true
  
- UIGraphicsBeginImageContext(self.view.frame.size)
- self.view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
- let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
- UIGraphicsEndImageContext()
+        UIGraphicsBeginImageContext(self.view.frame.size)
+        self.view.drawHierarchy(in: self.view.frame, afterScreenUpdates: true)
+        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
+        UIGraphicsEndImageContext()
  
- self.navigationController?.setNavigationBarHidden(false, animated: false)
- self.navigationController?.setToolbarHidden(false, animated: false)
- toolbarMenu.isHidden = false
+        self.navigationController?.setNavigationBarHidden(false, animated: false)
+        self.navigationController?.setToolbarHidden(false, animated: false)
+        toolbarMenu.isHidden = false
  
- return memedImage
- }
+        return memedImage
+    }
  
     func saveMeme() {
         // Addition of this conditional based on Code Review
@@ -189,30 +191,33 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
             let meme = Meme(topText: memeTopText.text!, bottomText: memeBottomText.text!, originalImage: memeImageView.image!, memedImage: generateMemedImage())
             let object = UIApplication.shared.delegate
             let appDelegate = object as! AppDelegate
-            appDelegate.memes.append(meme)
-            
-            print(appDelegate.memes)
+            if receivedIndexOfExistingMeme != nil {
+                appDelegate.memes.remove(at: receivedIndexOfExistingMeme!)
+                appDelegate.memes.insert(meme, at: receivedIndexOfExistingMeme!)
+            } else {
+                appDelegate.memes.append(meme)
+            }
+
         }
     }
-    
+/*
     func instantiateMemeTableViewController() {
         var viewController = UINavigationController()
         viewController = self.storyboard?.instantiateViewController(withIdentifier: "TableViewNavigationController") as! UINavigationController
         present(viewController, animated: true, completion: nil)
     }
-    
+*/
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
         pickImage.delegate = self
         memeTextStyle()
         checkForCamera()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotification()
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -242,9 +247,11 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
 
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         saveMeme()
-        instantiateMemeTableViewController()
+        //instantiateMemeTableViewController()
+        performSegue(withIdentifier: "ShowTheMemeList", sender: sender)
         
     }
+    
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {
         
@@ -256,7 +263,8 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         showShareScreen.completionWithItemsHandler =  { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
             if completed == true {
                 self.saveMeme()
-                self.instantiateMemeTableViewController()
+                //self.instantiateMemeTableViewController()
+                self.performSegue(withIdentifier: "ShowTheMemeList", sender: sender)
             }
         }
     }

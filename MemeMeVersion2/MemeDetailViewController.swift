@@ -17,6 +17,7 @@ class MemeDetailViewController: UIViewController {
     var memeOriginalImageToReceive: UIImage?
     var memeOriginalTopTextToReceive: String?
     var memeOriginalBottomTextToReceive: String?
+    var memeIndexToReceive: Int?
 
     
     override func viewDidLoad() {
@@ -45,6 +46,7 @@ class MemeDetailViewController: UIViewController {
             viewController.memeTopText.text = memeOriginalTopTextToReceive
             viewController.memeBottomText.text = memeOriginalBottomTextToReceive
             viewController.memeImageView.image = memeOriginalImageToReceive
+            viewController.receivedIndexOfExistingMeme = memeIndexToReceive
         }
     }
 

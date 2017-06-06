@@ -16,6 +16,7 @@ class MemeTableViewController: UITableViewController {
     var memeOriginalImageToSend: UIImage!
     var memeOriginalTopTextToSend: String!
     var memeOriginalBottomTextToSend: String!
+    var memeIndexToSend: Int!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,7 +32,6 @@ class MemeTableViewController: UITableViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
     // MARK: - Table view data source
@@ -45,7 +45,6 @@ class MemeTableViewController: UITableViewController {
 
         return memes.count
     }
-
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "memeTableViewCell", for: indexPath) as! MemeTableViewCell
@@ -62,6 +61,10 @@ class MemeTableViewController: UITableViewController {
         memeOriginalImageToSend = memes[indexPath.row].originalImage
         memeOriginalTopTextToSend = memes[indexPath.row].topText
         memeOriginalBottomTextToSend = memes[indexPath.row].bottomText
+        
+        memeIndexToSend = memes.index { (targetMeme) -> Bool in
+            targetMeme.memedImage == finishedMemeToSend
+        }
         
         self.performSegue(withIdentifier: "ShowDetailSegue", sender: indexPath)
     }
@@ -113,23 +116,8 @@ class MemeTableViewController: UITableViewController {
             viewController.memeOriginalImageToReceive = memeOriginalImageToSend
             viewController.memeOriginalTopTextToReceive = memeOriginalTopTextToSend
             viewController.memeOriginalBottomTextToReceive = memeOriginalBottomTextToSend
+            viewController.memeIndexToReceive = memeIndexToSend
         }
     }
-    
-    @IBAction func updateMemeList(sender: UIStoryboardSegue) {
-        if let originationViewController = sender.source as? CreateEditMemeViewController, let meme = originationViewController.meme {
-            
-            if let selectedMeme = tableView.indexPathForSelectedRow {
-                memes[selectedMeme.row] = meme
-                tableView.reloadRows(at: [selectedMeme], with: .none)
-                print("THE SELECTED MEME: \(selectedMeme)")
-            } else {
-                let newMeme = IndexPath(row: memes.count, section: 0)
-                memes.append(meme)
-                tableView.insertRows(at: [newMeme], with: .automatic)
-                print("else ran")
-            }
-        }
-    }
-    
+
 }
