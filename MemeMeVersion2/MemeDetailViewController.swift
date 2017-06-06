@@ -13,15 +13,12 @@ class MemeDetailViewController: UIViewController {
     @IBOutlet weak var memeDetailImageView: UIImageView!
     
     var memedImagePresentation: UIImage!
-    
-    var memeOriginalImageToReceive: UIImage?
-    var memeOriginalTopTextToReceive: String?
-    var memeOriginalBottomTextToReceive: String?
     var memeIndexToReceive: Int?
-
+    var meme: Meme?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        memedImagePresentation = meme?.memedImage
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -31,33 +28,25 @@ class MemeDetailViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
-
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "EditMemeSegue" {
             let viewController = segue.destination as! CreateEditMemeViewController
-            let _ = viewController.view
-            viewController.memeTopText.text = memeOriginalTopTextToReceive
-            viewController.memeBottomText.text = memeOriginalBottomTextToReceive
-            viewController.memeImageView.image = memeOriginalImageToReceive
+            // Shruti Choksi provided assistance regarding how to use the Meme object in this context
+            viewController.meme = meme
             viewController.receivedIndexOfExistingMeme = memeIndexToReceive
         }
     }
 
-    
     // MARK: ACTIONS
     
     @IBAction func doneWithMemeDetailViewButton(_ sender: UIBarButtonItem) {
         var viewController = UINavigationController()
-        
         viewController = self.storyboard?.instantiateViewController(withIdentifier: "TableViewNavigationController") as! UINavigationController
-
         present(viewController, animated: true, completion: nil)
     }
     

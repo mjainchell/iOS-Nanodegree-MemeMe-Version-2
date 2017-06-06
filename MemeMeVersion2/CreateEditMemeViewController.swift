@@ -13,17 +13,10 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     // MARK: OUTLETS
     
     @IBOutlet weak var memeImageView: UIImageView!
-    
     @IBOutlet weak var memeTopText: UITextField!
-
     @IBOutlet weak var memeBottomText: UITextField!
-    
     @IBOutlet weak var cameraButton: UIBarButtonItem!
-    
     @IBOutlet weak var toolbarMenu: UIToolbar!
-    
-    
-    
     
     // MARK: PROPERTIES
     
@@ -155,17 +148,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
         dismiss(animated: true, completion: nil)
     }
-/*
-    func generateMemedImage() -> UIImage {
-        let targetView = view.viewWithTag(1)
-        UIGraphicsBeginImageContext((targetView?.frame.size)!)
-        targetView?.drawHierarchy(in: (targetView?.frame)!, afterScreenUpdates: true)
-        let memedImage: UIImage = UIGraphicsGetImageFromCurrentImageContext()!
-        UIGraphicsEndImageContext()
-        
-        return memedImage
-    }
-*/
     
     func generateMemedImage() -> UIImage {
  
@@ -200,19 +182,19 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
 
         }
     }
-/*
-    func instantiateMemeTableViewController() {
-        var viewController = UINavigationController()
-        viewController = self.storyboard?.instantiateViewController(withIdentifier: "TableViewNavigationController") as! UINavigationController
-        present(viewController, animated: true, completion: nil)
-    }
-*/
+
     override func viewDidLoad() {
         super.viewDidLoad()
         pickImage.delegate = self
         memeTextStyle()
         checkForCamera()
         
+        // 1 on 1
+        if meme != nil {
+            memeTopText.text = meme!.topText
+            memeBottomText.text = meme!.bottomText
+            memeImageView.image = meme!.originalImage
+        }
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -227,7 +209,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     // MARK: ACTIONS
@@ -247,11 +228,9 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
 
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         saveMeme()
-        //instantiateMemeTableViewController()
         performSegue(withIdentifier: "ShowTheMemeList", sender: sender)
         
     }
-    
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {
         
@@ -263,7 +242,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         showShareScreen.completionWithItemsHandler =  { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
             if completed == true {
                 self.saveMeme()
-                //self.instantiateMemeTableViewController()
                 self.performSegue(withIdentifier: "ShowTheMemeList", sender: sender)
             }
         }

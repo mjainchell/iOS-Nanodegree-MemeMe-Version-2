@@ -282,11 +282,11 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gxb-r3-EI0" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1799" y="832"/>
+            <point key="canvasLocation" x="1570" y="933"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="Djh-CK-ykz"/>
         <segue reference="fIt-fi-Xs3"/>
-        <segue reference="ORh-tg-0c9"/>
     </inferredMetricsTieBreakers>
 </document>
