@@ -35,7 +35,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     // MARK: FUNCTIONS
     
     // MARK: Text field configuration functions
-    
     // The following function has been added and functions refactored based on Code Review
     func configureTextFields(textField: UITextField, startingText: String) {
         textField.delegate = self
