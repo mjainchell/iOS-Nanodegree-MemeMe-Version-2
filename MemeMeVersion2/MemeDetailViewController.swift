@@ -46,11 +46,12 @@ class MemeDetailViewController: UIViewController {
     // MARK: ACTIONS
     
     @IBAction func doneWithMemeDetailViewButton(_ sender: UIBarButtonItem) {
-        var viewController = UINavigationController()
-        viewController = self.storyboard?.instantiateViewController(withIdentifier: "TableViewNavigationController") as! UINavigationController
+        var viewController = UITabBarController()
+        viewController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as!
+            UITabBarController
         present(viewController, animated: true, completion: nil)
     }
-    
+
     @IBAction func editCurrentMeme(_ sender: UIBarButtonItem) {        
         performSegue(withIdentifier: "EditMemeSegue", sender: sender)
     }
