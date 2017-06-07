@@ -20,30 +20,33 @@ class MemeCollectionViewController: UICollectionViewController {
     var finishedMemeToSend: UIImage!
     var memeIndexToSend: Int!
     
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
+        
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
+    }
+    
+    // Code for using flowLayout is largely based on code provided in Udacity Lesson
+    override func viewWillAppear(_ animated: Bool) {
+        flowLayout.minimumInteritemSpacing = 1.5
+        flowLayout.minimumLineSpacing = 1.5
+        flowLayout.itemSize = CGSize(width: determineLandscapeOrPortrait(), height: determineLandscapeOrPortrait() * 1.5)
+    }
+    
+    func determineLandscapeOrPortrait() -> CGFloat {
+        let cellSpacing:CGFloat = 1.5
+        var cellDimensions: CGFloat! = 0.0
+        let setWidthDimensionPortrait = (view.frame.size.width - (2 * cellSpacing)) / 3.0
+        let setWidthDimensionLandscape = (view.frame.size.width - (2 * cellSpacing)) / 6.0
         
+        if view.frame.size.width < view.frame.size.height {
+            cellDimensions = setWidthDimensionPortrait
+        } else if view.frame.size.height < view.frame.size.width {
+            cellDimensions = setWidthDimensionLandscape
+        }
         
-        
-        
-        let cellSpacing:CGFloat = 2.5
-
-        let widthDimension = (view.frame.size.width - (2 * cellSpacing)) / 3.0
-        let heightDimension = widthDimension * 1.5
-        
-        flowLayout.minimumInteritemSpacing = cellSpacing
-        flowLayout.minimumLineSpacing = cellSpacing
-        flowLayout.itemSize = CGSize(width: widthDimension, height: heightDimension)
-        
-        
+        return cellDimensions
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -52,18 +55,22 @@ class MemeCollectionViewController: UICollectionViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+        super.prepare(for: segue, sender: sender)
+        if segue.identifier == "ShowDetailFromCollectionViewSegue" {
+            let viewController = segue.destination as! MemeDetailViewController
+            let indexPath = sender as! IndexPath
+            let meme = memes[indexPath.item]
+            // Shruti Choksi provided assistance regarding how to use the Meme object in this context.
+            viewController.meme = meme
+            viewController.memeIndexToReceive = memeIndexToSend
+        }
     }
-    */
 
     // MARK: UICollectionViewDataSource
 
@@ -72,7 +79,6 @@ class MemeCollectionViewController: UICollectionViewController {
         return 1
     }
 
-
     override func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 
         return memes.count
@@ -80,44 +86,18 @@ class MemeCollectionViewController: UICollectionViewController {
 
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: reuseIdentifier, for: indexPath) as! MemeCollectionViewCell
-        
         let meme = memes[indexPath.item]
-        // Configure the cell
-        
         cell.memeCollectionViewCellImageView.image = meme.memedImage
         
         return cell
     }
-
-    // MARK: UICollectionViewDelegate
-
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(_ collectionView: UICollectionView, shouldHighlightItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(_ collectionView: UICollectionView, shouldSelectItemAt indexPath: IndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(_ collectionView: UICollectionView, shouldShowMenuForItemAt indexPath: IndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, canPerformAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) -> Bool {
-        return false
-    }
-
-    override func collectionView(_ collectionView: UICollectionView, performAction action: Selector, forItemAt indexPath: IndexPath, withSender sender: Any?) {
     
+    override func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        finishedMemeToSend = memes[indexPath.item].memedImage
+        memeIndexToSend = memes.index { (targetMeme) -> Bool in
+            targetMeme.memedImage == finishedMemeToSend
+        }
+        self.performSegue(withIdentifier: "ShowDetailFromCollectionViewSegue", sender: indexPath)
     }
-    */
-
+    
 }

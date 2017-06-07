@@ -20,9 +20,6 @@ class MemeTableViewController: UITableViewController {
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         memes = appDelegate.memes
-        
-
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {

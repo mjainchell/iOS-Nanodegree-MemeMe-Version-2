@@ -46,7 +46,7 @@
                                     <constraints>
                                         <constraint firstItem="mEr-eb-mOp" firstAttribute="top" secondItem="SCX-Su-V2M" secondAttribute="top" constant="50" id="EnP-wf-54l"/>
                                         <constraint firstItem="bcV-Z6-oWN" firstAttribute="leading" secondItem="UmR-Sl-7Vq" secondAttribute="trailing" constant="35" id="LEa-sg-FhG"/>
-                                        <constraint firstItem="mEr-eb-mOp" firstAttribute="leading" secondItem="SCX-Su-V2M" secondAttribute="leading" constant="150" id="Sz9-ie-n6U"/>
+                                        <constraint firstItem="mEr-eb-mOp" firstAttribute="leading" secondItem="UmR-Sl-7Vq" secondAttribute="trailing" constant="35" id="T2k-lW-73i"/>
                                         <constraint firstAttribute="trailing" secondItem="mEr-eb-mOp" secondAttribute="trailing" id="Uqo-07-zcc"/>
                                         <constraint firstAttribute="leadingMargin" secondItem="UmR-Sl-7Vq" secondAttribute="leading" id="bCS-xZ-YpE"/>
                                         <constraint firstAttribute="bottom" secondItem="bcV-Z6-oWN" secondAttribute="bottom" constant="50" id="bv9-C6-8aC"/>
@@ -126,7 +126,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCn-Ys-Afi" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2664" y="-763"/>
+            <point key="canvasLocation" x="1903" y="-280"/>
         </scene>
         <!--Meme-->
         <scene sceneID="tne-QT-ifu">
@@ -227,7 +227,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2664" y="15"/>
+            <point key="canvasLocation" x="2870" y="378"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="gdQ-j3-emf">
@@ -283,7 +283,7 @@
             </objects>
             <point key="canvasLocation" x="-30" y="-761"/>
         </scene>
-        <!--Meme Collection View Controller-->
+        <!--Memes-->
         <scene sceneID="znk-fN-EuF">
             <objects>
                 <collectionViewController id="Z7k-kV-15e" customClass="MemeCollectionViewController" customModule="MemeMeVersion2" customModuleProvider="target" sceneMemberID="viewController">
@@ -326,17 +326,25 @@
                             <outlet property="delegate" destination="Z7k-kV-15e" id="4Qz-Sh-rBL"/>
                         </connections>
                     </collectionView>
-                    <navigationItem key="navigationItem" id="k6f-i9-IyR"/>
+                    <navigationItem key="navigationItem" title="Memes" id="k6f-i9-IyR">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="gLt-RS-UWO">
+                            <connections>
+                                <segue destination="BYZ-38-t0r" kind="show" identifier="AddNewMemeFromCollectionViewSegue" id="rES-dS-LSi"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="flowLayout" destination="STk-C8-Iob" id="WZa-Wi-hYL"/>
+                        <segue destination="2Mu-iN-VBR" kind="show" identifier="ShowDetailFromCollectionViewSegue" id="L6b-RP-Rui"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="57D-Kl-ib5" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="791.304347826087" y="-763.04347826086962"/>
+            <point key="canvasLocation" x="793" y="-761"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="bQO-P4-PGL"/>
+        <segue reference="ORh-tg-0c9"/>
+        <segue reference="fIt-fi-Xs3"/>
     </inferredMetricsTieBreakers>
 </document>

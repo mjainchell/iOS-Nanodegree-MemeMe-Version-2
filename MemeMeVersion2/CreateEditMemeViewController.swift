@@ -177,7 +177,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
             } else {
                 appDelegate.memes.append(meme)
             }
-
         }
     }
 
@@ -239,8 +238,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         viewController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
         present(viewController, animated: true, completion: nil)
     }
-    
-
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {
         
