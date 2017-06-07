@@ -140,7 +140,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
-        memeImageView.contentMode = .scaleAspectFill
         memeImageView.image = selectedImage
         dismiss(animated: true, completion: nil)
     }
@@ -200,6 +199,8 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         subscribeToKeyboardNotification()
+        self.tabBarController?.tabBar.isHidden = true
+        memeImageView.contentMode = .scaleAspectFill
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -222,27 +223,38 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     }
 
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        dismiss(animated: true, completion: nil)
-        print(generateMemedImage())
+        //dismiss(animated: true, completion: nil)
+        backToRoot()   
     }
 
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         saveMeme()
-        performSegue(withIdentifier: "ShowTheMemeList", sender: sender)
+        backToRoot()
+ 
+        //performSegue(withIdentifier: "ShowTheMemeList", sender: sender)
         
     }
+    
+    func backToRoot() {
+        var viewController = UITabBarController()
+        viewController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
+        present(viewController, animated: true, completion: nil)
+    }
+    
+
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {
         
         let memeToShare = [generateMemedImage()] as [Any]
         let showShareScreen = UIActivityViewController(activityItems: memeToShare , applicationActivities: nil)
+
         present(showShareScreen, animated: true, completion: nil)
         
         // This change made based on Code Review, code example sourced from: https://stackoverflow.com/questions/40120922/uiactivityviewcontrollercompletionwithitemshandler-having-error-with-new-update
         showShareScreen.completionWithItemsHandler =  { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
-            if completed == true {
+            if completed {
                 self.saveMeme()
-                self.performSegue(withIdentifier: "ShowTheMemeList", sender: sender)
+                self.backToRoot()
             }
         }
     }
