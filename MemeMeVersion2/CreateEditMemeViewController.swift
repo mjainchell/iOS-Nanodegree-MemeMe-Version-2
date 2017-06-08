@@ -198,7 +198,7 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         super.viewWillAppear(animated)
         subscribeToKeyboardNotification()
         self.tabBarController?.tabBar.isHidden = true
-        memeImageView.contentMode = .scaleAspectFill
+        memeImageView.contentMode = .scaleAspectFit
     }
     
     override func viewWillDisappear(_ animated: Bool) {

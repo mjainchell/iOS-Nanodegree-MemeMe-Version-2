@@ -16,7 +16,7 @@ class MemeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        tableCellMemeImage.contentMode = .scaleAspectFill
+        tableCellMemeImage.contentMode = .scaleAspectFit
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
