@@ -26,7 +26,7 @@ class MemeDetailViewController: UIViewController {
         self.memeDetailImageView.image = memedImagePresentation
         self.tabBarController?.tabBar.isHidden = true
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
@@ -46,10 +46,8 @@ class MemeDetailViewController: UIViewController {
     // MARK: ACTIONS
     
     @IBAction func doneWithMemeDetailViewButton(_ sender: UIBarButtonItem) {
-        var viewController = UITabBarController()
-        viewController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as!
-            UITabBarController
-        present(viewController, animated: true, completion: nil)
+      performSegue(withIdentifier: "BackToTabBarControllerFromDetailViewSegue", sender: sender)
+        
     }
 
     @IBAction func editCurrentMeme(_ sender: UIBarButtonItem) {        

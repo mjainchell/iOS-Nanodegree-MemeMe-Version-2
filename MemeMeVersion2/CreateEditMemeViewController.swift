@@ -186,7 +186,7 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         memeTextStyle()
         checkForCamera()
         
-        // 1 on 1
+        // Shruti Choksi provided assistance regarding this conditional
         if meme != nil {
             memeTopText.text = meme!.topText
             memeBottomText.text = meme!.bottomText
@@ -198,6 +198,7 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         super.viewWillAppear(animated)
         subscribeToKeyboardNotification()
         self.tabBarController?.tabBar.isHidden = true
+        // Content mode changed to .scaleAspectFit based on code review
         memeImageView.contentMode = .scaleAspectFit
     }
     
@@ -221,22 +222,18 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     }
 
     @IBAction func cancelButton(_ sender: UIBarButtonItem) {
-        //dismiss(animated: true, completion: nil)
-        backToRoot()   
+        popTheViewController()
     }
 
     @IBAction func saveButton(_ sender: UIBarButtonItem) {
         saveMeme()
-        backToRoot()
- 
-        //performSegue(withIdentifier: "ShowTheMemeList", sender: sender)
-        
+        popTheViewController()
     }
     
-    func backToRoot() {
-        var viewController = UITabBarController()
-        viewController = self.storyboard?.instantiateViewController(withIdentifier: "TabBarController") as! UITabBarController
-        present(viewController, animated: true, completion: nil)
+    func popTheViewController() {
+        // The following line of code was provided by code review
+        navigationController?.popToRootViewController(animated: true)
+        performSegue(withIdentifier: "BackToTabBarControllerFromCreateEditViewSegue", sender: AnyObject.self)
     }
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {
@@ -250,7 +247,7 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         showShareScreen.completionWithItemsHandler =  { (activityType: UIActivityType?, completed: Bool, returnedItems: [Any]?, error: Error?) -> Void in
             if completed {
                 self.saveMeme()
-                self.backToRoot()
+                self.popTheViewController()
             }
         }
     }

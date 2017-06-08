@@ -16,6 +16,7 @@ class MemeTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
+        // Content mode changed to .scaleAspectFit based on code review
         tableCellMemeImage.contentMode = .scaleAspectFit
     }
 

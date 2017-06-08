@@ -25,7 +25,6 @@ class MemeCollectionViewController: UICollectionViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
     }
     
     // Code for using flowLayout is largely based on code provided in Udacity Lesson
