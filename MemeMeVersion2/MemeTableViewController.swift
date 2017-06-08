@@ -11,20 +11,25 @@ import UIKit
 class MemeTableViewController: UITableViewController {
     
     // MARK: PROPERTIES
-    var memes = [Meme]()
+    
+    // memes property has been changed based on code review
+    var memes: [Meme] {
+        return (UIApplication.shared.delegate as! AppDelegate).memes
+    }
     var finishedMemeToSend: UIImage!
     var memeIndexToSend: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        memes = appDelegate.memes
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        tableView.reloadData()
+
         
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        tableView.reloadData()
     }
 
     override func didReceiveMemoryWarning() {

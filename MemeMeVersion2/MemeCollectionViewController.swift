@@ -16,15 +16,16 @@ class MemeCollectionViewController: UICollectionViewController {
     
     //MARK: Properties
     
-    var memes = [Meme]()
+    // memes property has been changed based on code review
+    var memes: [Meme] {
+        return (UIApplication.shared.delegate as! AppDelegate).memes
+    }
     var finishedMemeToSend: UIImage!
     var memeIndexToSend: Int!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        memes = appDelegate.memes
+
     }
     
     // Code for using flowLayout is largely based on code provided in Udacity Lesson
