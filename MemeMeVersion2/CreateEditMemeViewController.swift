@@ -49,9 +49,9 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     }
     
     // The following function checks to see if the Camera button should be active
-    func checkForCamera() {
-        // This function has been refactored to use the Ternary Conditional Operator based on Code Review
-        UIImagePickerController.isSourceTypeAvailable(.camera) ? (self.cameraButton.isEnabled = true) : (self.cameraButton.isEnabled = false)
+    func checkForCamera() {        
+        // This function has been changed based on code review
+        cameraButton.isEnabled = UIImagePickerController.isSourceTypeAvailable(.camera)
     }
     
     // Shruti Choksi provided assistance regaridng using a conditional for the following two functions.
