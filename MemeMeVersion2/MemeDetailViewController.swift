@@ -28,10 +28,6 @@ class MemeDetailViewController: UIViewController {
         self.memeDetailImageView.contentMode = .scaleAspectFit
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation

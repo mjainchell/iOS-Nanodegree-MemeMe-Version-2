@@ -57,7 +57,8 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     // Shruti Choksi provided assistance regaridng using a conditional for the following two functions.
     func keyboardWillShow(_ notification: Notification) {
         if memeBottomText.isFirstResponder {
-            view.frame.origin.y = 0 - getKeyboardHeight(notification)
+            // Frame origin adjustment changed based on code review 
+            view.frame.origin.y = 0 - (getKeyboardHeight(notification) - 75)
         }
     }
     
@@ -216,10 +217,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         unsubscribeFromKeyboardNotification()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-    
     // MARK: ACTIONS
     
     @IBAction func albumButton(_ sender: UIBarButtonItem) {

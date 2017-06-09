@@ -54,10 +54,6 @@ class MemeCollectionViewController: UICollectionViewController {
         collectionView?.reloadData()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-    }
-
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
