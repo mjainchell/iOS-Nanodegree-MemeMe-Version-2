@@ -90,20 +90,21 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         return true
     }
     
+    // Reusable method created based on Code Review
+    func textFieldUpdater(_ textField: UITextField, text: String) {
+        if textField.text == text {
+            textField.text = ""
+        } else if textField.text == "" {
+            textField.text = text
+        }
+    }
+    
     // The following function has been added and functions refactored based on Code Review
     func adjustTextFieldContent(_ textField: UITextField) {
         if textField == memeTopText {
-            if textField.text == "TOP TEXT" {
-                textField.text = ""
-            } else if textField.text == "" {
-                textField.text = "TOP TEXT"
-            }
+            textFieldUpdater(textField, text: "TOP TEXT")
         } else if textField == memeBottomText {
-            if textField.text == "BOTTOM TEXT" {
-                textField.text = ""
-            } else if textField.text == "" {
-                textField.text = "BOTTOM TEXT"
-            }
+            textFieldUpdater(textField, text: "BOTTOM TEXT")
         }
     }
     
@@ -136,7 +137,7 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
             }
         }
     }
-    
+
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         let selectedImage = info[UIImagePickerControllerOriginalImage] as! UIImage
         memeImageView.image = selectedImage
