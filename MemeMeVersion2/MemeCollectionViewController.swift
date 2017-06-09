@@ -32,6 +32,7 @@ class MemeCollectionViewController: UICollectionViewController {
         flowLayout.minimumInteritemSpacing = 1.5
         flowLayout.minimumLineSpacing = 1.5
         flowLayout.itemSize = CGSize(width: determineLandscapeOrPortrait(), height: determineLandscapeOrPortrait() * 1.5)
+        tabBarController?.tabBar.isHidden = false
     }
     
     func determineLandscapeOrPortrait() -> CGFloat {

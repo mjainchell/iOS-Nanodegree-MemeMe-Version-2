@@ -95,7 +95,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YDg-GH-T7u">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YDg-GH-T7u">
                                 <rect key="frame" x="0.0" y="64" width="414" height="672"/>
                             </imageView>
                         </subviews>
@@ -108,11 +108,6 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Meme Detail" id="Icw-fA-6pr">
-                        <barButtonItem key="leftBarButtonItem" systemItem="done" id="BgT-ON-pBZ">
-                            <connections>
-                                <action selector="doneWithMemeDetailViewButton:" destination="2Mu-iN-VBR" id="dSR-mb-sjS"/>
-                            </connections>
-                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" systemItem="edit" id="nLD-gm-KEc">
                             <connections>
                                 <action selector="editCurrentMeme:" destination="2Mu-iN-VBR" id="gug-2P-iiW"/>
@@ -122,7 +117,6 @@
                     <connections>
                         <outlet property="memeDetailImageView" destination="YDg-GH-T7u" id="pTE-Gk-lKk"/>
                         <segue destination="BYZ-38-t0r" kind="show" identifier="EditMemeSegue" id="ORh-tg-0c9"/>
-                        <segue destination="5ZR-fr-8lO" kind="presentation" identifier="BackToTabBarControllerFromDetailViewSegue" id="eXG-Xu-o8t"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VCn-Ys-Afi" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -141,7 +135,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Xz-au-Ls0">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="0Xz-au-Ls0">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="687"/>
                             </imageView>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Gkh-AE-8cs" userLabel="Meme Top Text">
@@ -152,7 +146,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0Zz-D4-4rf" userLabel="Meme Bottom Text">
                                 <rect key="frame" x="0.0" y="583" width="414" height="53"/>
@@ -162,7 +156,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="allCharacters" returnKeyType="done"/>
                             </textField>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="e8l-PC-fqZ">
                                 <rect key="frame" x="0.0" y="692" width="414" height="44"/>
@@ -307,7 +301,7 @@
                                     <rect key="frame" x="0.0" y="0.0" width="320" height="480"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iQP-rN-Xff">
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="iQP-rN-Xff">
                                             <rect key="frame" x="8" y="8" width="304" height="464"/>
                                         </imageView>
                                     </subviews>
@@ -346,8 +340,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="eXG-Xu-o8t"/>
+        <segue reference="bQO-P4-PGL"/>
         <segue reference="fIt-fi-Xs3"/>
-        <segue reference="ORh-tg-0c9"/>
     </inferredMetricsTieBreakers>
 </document>

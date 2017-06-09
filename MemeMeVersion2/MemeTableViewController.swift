@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MemeTableViewController: UITableViewController {
+class MemeTableViewController: UITableViewController, UITabBarControllerDelegate {
     
     // MARK: PROPERTIES
     
@@ -21,6 +21,10 @@ class MemeTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tabBarController?.tabBar.isHidden = false
     }
     
     override func viewDidAppear(_ animated: Bool) {

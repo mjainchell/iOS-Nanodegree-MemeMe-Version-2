@@ -233,7 +233,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     func popTheViewController() {
         // The following line of code was provided by code review
         navigationController?.popToRootViewController(animated: true)
-        performSegue(withIdentifier: "BackToTabBarControllerFromCreateEditViewSegue", sender: AnyObject.self)
     }
     
     @IBAction func shareMeme(_ sender: UIBarButtonItem) {

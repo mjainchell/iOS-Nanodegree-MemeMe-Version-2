@@ -25,6 +25,7 @@ class MemeDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         self.memeDetailImageView.image = memedImagePresentation
         self.tabBarController?.tabBar.isHidden = true
+        self.memeDetailImageView.contentMode = .scaleAspectFit
     }
     
     override func didReceiveMemoryWarning() {
@@ -44,11 +45,6 @@ class MemeDetailViewController: UIViewController {
     }
 
     // MARK: ACTIONS
-    
-    @IBAction func doneWithMemeDetailViewButton(_ sender: UIBarButtonItem) {
-      performSegue(withIdentifier: "BackToTabBarControllerFromDetailViewSegue", sender: sender)
-        
-    }
 
     @IBAction func editCurrentMeme(_ sender: UIBarButtonItem) {        
         performSegue(withIdentifier: "EditMemeSegue", sender: sender)
