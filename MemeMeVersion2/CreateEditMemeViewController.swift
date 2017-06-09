@@ -118,23 +118,31 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     
     // MARK: Selecting an Image or taking a photo
     
-    // The following function has been added and functions refactored based on Code Review
+    // The following three functions have been refactored or created based on code review
+    func sourceTypeSetPhotoLibrary(sourceType: UIImagePickerControllerSourceType) {
+        pickImage.allowsEditing = false
+        pickImage.sourceType = sourceType
+        pickImage.mediaTypes = UIImagePickerController.availableMediaTypes(for: sourceType)!
+        present(pickImage, animated: true, completion: nil)
+    }
+    
+    func sourceTypeSetCamera(sourceType: UIImagePickerControllerSourceType) {
+        if UIImagePickerController.isSourceTypeAvailable(sourceType) {
+            pickImage.allowsEditing = false
+            pickImage.sourceType = UIImagePickerControllerSourceType.camera
+            pickImage.cameraCaptureMode = .photo
+            pickImage.modalPresentationStyle = .fullScreen
+            present(pickImage, animated: true, completion: nil)
+        } else {
+            NSLog("NO CAMERA")
+        }
+    }
+    
     func chooseSourceType(sourceType: UIImagePickerControllerSourceType) {
         if sourceType == .photoLibrary {
-            pickImage.allowsEditing = false
-            pickImage.sourceType = .photoLibrary
-            pickImage.mediaTypes = UIImagePickerController.availableMediaTypes(for: .photoLibrary)!
-            present(pickImage, animated: true, completion: nil)
+            sourceTypeSetPhotoLibrary(sourceType: sourceType)
         } else if sourceType == .camera {
-            if UIImagePickerController.isSourceTypeAvailable(.camera) {
-                pickImage.allowsEditing = false
-                pickImage.sourceType = UIImagePickerControllerSourceType.camera
-                pickImage.cameraCaptureMode = .photo
-                pickImage.modalPresentationStyle = .fullScreen
-                present(pickImage, animated: true, completion: nil)
-            } else {
-                NSLog("NO CAMERA")
-            }
+            sourceTypeSetCamera(sourceType: sourceType)
         }
     }
 
