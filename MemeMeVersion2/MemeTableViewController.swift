@@ -21,6 +21,8 @@ class MemeTableViewController: UITableViewController, UITabBarControllerDelegate
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        navigationItem.leftBarButtonItem = editButtonItem
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -59,6 +61,16 @@ class MemeTableViewController: UITableViewController, UITabBarControllerDelegate
             targetMeme.memedImage == finishedMemeToSend
         }
         self.performSegue(withIdentifier: "ShowDetailSegue", sender: indexPath)
+    }
+    
+    // This function has been added based on code review
+    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            let object = UIApplication.shared.delegate
+            let appDelegate = object as! AppDelegate
+            appDelegate.memes.remove(at: indexPath.row)
+            tableView.deleteRows(at: [indexPath], with: .fade)
+        }
     }
 
     // MARK: - Navigation
