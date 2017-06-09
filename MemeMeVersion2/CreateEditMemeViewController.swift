@@ -160,7 +160,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
     func generateMemedImage() -> UIImage {
  
         self.navigationController?.setNavigationBarHidden(true, animated: false)
-        self.navigationController?.setToolbarHidden(true, animated: false)
         toolbarMenu.isHidden = true
  
         UIGraphicsBeginImageContext(self.view.frame.size)
@@ -169,7 +168,6 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         UIGraphicsEndImageContext()
  
         self.navigationController?.setNavigationBarHidden(false, animated: false)
-        self.navigationController?.setToolbarHidden(false, animated: false)
         toolbarMenu.isHidden = false
  
         return memedImage
