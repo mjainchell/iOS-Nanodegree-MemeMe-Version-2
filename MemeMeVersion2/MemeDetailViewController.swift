@@ -25,7 +25,7 @@ class MemeDetailViewController: UIViewController {
         super.viewWillAppear(animated)
         self.memeDetailImageView.image = memedImagePresentation
         self.tabBarController?.tabBar.isHidden = true
-        self.memeDetailImageView.contentMode = .scaleAspectFit
+        self.memeDetailImageView.contentMode = .scaleAspectFill
     }
     
     // MARK: - Navigation

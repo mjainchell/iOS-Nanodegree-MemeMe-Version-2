@@ -206,8 +206,8 @@ class CreateEditMemeViewController: UIViewController, UITextFieldDelegate, UIIma
         super.viewWillAppear(animated)
         subscribeToKeyboardNotification()
         self.tabBarController?.tabBar.isHidden = true
-        // Content mode changed to .scaleAspectFit based on code review
-        memeImageView.contentMode = .scaleAspectFit
+        // Content mode changed to .scaleAspectFill for demonstration purposes
+        memeImageView.contentMode = .scaleAspectFill
     }
     
     override func viewWillDisappear(_ animated: Bool) {
